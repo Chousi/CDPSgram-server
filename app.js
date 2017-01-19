@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var partials = require('express-partials');
+var session = require('express-session');
 var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
@@ -18,13 +19,48 @@ app.set('view engine', 'ejs');
 app.use(partials());
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(methodOverride('_method'));
-
+app.use(session({secret: 'CDPSgram', resave:false, saveUninitialized:true}))
+app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+
+if (app.get('env') === 'production') {
+  app.use(function(req, res, next) {
+    if (req.session.user){
+      var currentTime = new Date();
+      var userTime = new Date(req.session.user.lastPetition);
+      var difference = (currentTime.getTime() - userTime.getTime());
+      var timeout = 120000;
+      if(difference > timeout){
+        delete req.session.user;
+        res.redirect('/session');
+        next();
+      } else {
+        req.redirect.user.lastPetition = new Date();
+        next();
+      }
+    } else {
+      next();
+    }
+  });
+}
+
+// Helper dinámico:
+app.use(function(req, res, next) {
+  // Hacer visible req.session en las vistas
+    res.locals.session = req.session;
+
+    next();
+});
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler

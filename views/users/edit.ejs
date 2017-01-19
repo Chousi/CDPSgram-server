@@ -1,0 +1,11 @@
+
+	<p>
+	  <h2>Editar usuario:</h2>
+	</p>
+
+	<p>
+		<form method="post" action="/users/<%= user.id %>?_method=PUT" >
+			<% include _form.ejs %>
+		</form>
+	</p>
+	

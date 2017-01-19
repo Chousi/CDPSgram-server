@@ -4,6 +4,7 @@ var photos_url = process.env.PHOTOS_URL || "http://localhost:8000";
 <div class="photo photo_playing">
 	<p><%=photo.name%></p>
 	<img src="<%=photo.url%>"></img>
+	<p>Author:<%= author || 'Anonimo' %> </p>
 	
 	<form method="post" action="/photos/<%=photo.id%>?_method=delete">
 	    <button onClick="return confirm('Delete: <%=photo.name%>. Are you sure? ');">
