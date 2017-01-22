@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "migrate_local": "./node_modules/.bin/sequelize db:migrate --url sqlite://$(pwd)/cdps.sqlite",
-    "seed_local": "./node_modules/.bin/sequelize db:seed:all --url sqlite://$(pwd)/cdps.sqlite"
+    "migrate_local": "./node_modules/.bin/sequelize db:migrate --url sqlite://$(pwd)/../CDPSgram-photos/media/cdps.sqlite",
+    "seed_local": "./node_modules/.bin/sequelize db:seed:all --url sqlite://$(pwd)/../CDPSgram-photos/media/cdps.sqlite"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

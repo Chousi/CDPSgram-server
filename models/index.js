@@ -14,7 +14,7 @@ var url, storage;
 
 if (!process.env.DATABASE_URL) {
 	url = "sqlite:///"
-	storage = "cdps.sqlite";
+	storage = process.env.PWD + "/../CDPSgram-photos/media/cdps.sqlite";
 } else {
 	url = process.env.DATABASE_URL;
 	storage = process.env.DATABASE_STORAGE || '';
