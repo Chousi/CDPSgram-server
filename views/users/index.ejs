@@ -1,6 +1,7 @@
+<div id="usuarios">
 <h2> Usuarios </h2>
 
-<table>
+<table id="user-table">
 	<% for (var i in users) { %>
 	<tr>
 		<td>
@@ -29,3 +30,4 @@
 <% if (!session.user) { %>
 <a href="/users/new"><button type="button">Crear usuario</button></a>
 <% }; %>
+</div>

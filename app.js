@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var partials = require('express-partials');
 var session = require('express-session');
+var flash = require('express-flash');
 var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
@@ -18,7 +19,7 @@ app.set('view engine', 'ejs');
 
 app.use(partials());
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 
 app.use(logger('dev'));
@@ -28,7 +29,7 @@ app.use(cookieParser());
 app.use(session({secret: 'CDPSgram', resave:false, saveUninitialized:true}))
 app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(flash());
 
 
 

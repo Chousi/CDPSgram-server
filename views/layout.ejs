@@ -6,27 +6,65 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   </head>
+  <img src="images/CDPSgram-logo.png" alt="" style="width:100px;heigth:100px;">
   <body>
   	<div id="header">
-    	<h1><a href="/">CDPSgram</a></h1>
+    	<h1><a id="fuente_header" href="/">CDPSgram</a></h1>
   	</div>
     <div id="container">
 	    <div id="nav-bar">
 	    	<ul>
+          <% if (!session.user) { %>
+            <li ><a href="/users/new">New User</a></li>
+            <li ><a href="/session">Login</a></li>
+          <% } else { %>
+            <li><span><%= session.user.username %></span></li>
+            <li><a href="/users/<%= session.user.id %>">Profile</a></li>
+            <li><a href="/session?_method=DELETE">Logout</a></li>
+          <% } %>
 	    		<li><a href="/photos">My photos</a></li>
 	    		<li><a href="/photos/new">Upload new photo</a></li>
           <li><a href="/users">Users</a></li>
-          <% if (!session.user) { %>
-            <li><a href="/users/new">New User</a></li>
-            <li><a href="/session">Login</a></li>
-          <% } else { %>
-          <li><%= session.user.username %></li>
-          <li><a href="/users/<%= session.user.id %>">Profile</a></li>
-          <li><a href="/session?_method=DELETE">Logout</a></li>
-          <% } %>
+        
         </ul>
-	    </div>
-	    <div id="container-body"><%- body %></div>
+	   </div>
+    <section>
+        <% if (messages.info) { %>
+            <article id = 'flashinfo'>
+              <h3> Información de interés</h3>
+              <ul>
+                <% for (var i in messages.info) { %>
+                    <li> <%= messages.info[i] %> </li>
+                <% } %>
+              </ul>
+            </article>
+         <% } %>
+
+        <% if (messages.success) { %>
+            <article id = 'flashsuccess'>
+              <h3> Tareas completadas con éxito</h3>
+              <ul>
+                <% for (var i in messages.success) { %>
+                    <li> <%= messages.success[i] %> </li>
+                <% } %>
+              </ul>
+            </article>
+         <% } %>   
+         
+        <% if (messages.error) { %>
+            <article id = 'flasherror'>
+              <h3> Errores encontrados:</h3>
+              <ul>
+                <% for (var i in messages.error) { %>
+                    <li> <%= messages.error[i] %> </li>
+                <% } %>
+              </ul>
+            </article>
+         <% } %>  
+      </section>
+	    <div id="container-body">
+        <%- body %>
+      </div>
     </div>
   </body>
 </html>

@@ -1,6 +1,18 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: repeating-linear-gradient(
+  	0deg,
+  	transparent,
+  	transparent 10px,
+  	#ccc 10px,
+  	#ccc 20px
+  	),
+  linear-gradient(
+  	to bottom,
+  	#eee,
+  	#999
+  	);
 }
 
 a {
@@ -14,6 +26,14 @@ h1 a {
 
 #header {
 	padding-bottom: 20px;
+	height:50px;
+	background-color:black;
+	border:1px solid #CCC;
+	text-align:center;
+}
+
+#fuente_header {
+	color: white;
 }
 
 #nav-bar {
@@ -24,12 +44,17 @@ h1 a {
 }
 
 #nav-bar ul {
-	list-style-type: none;
+	list-style-type: square;
 	padding-left: 0px;
 }
 
 #nav-bar li {
 	padding-bottom: 20px;
+	text-decoration: none;
+}
+
+#nav-bar a {
+	color:#000066;
 }
 
 #container-body {
@@ -47,12 +72,12 @@ h1 a {
 }
 
 .photo {
-	width: 300px;
+	width: 100px;
 	height: 200px;
 	padding-top: 50px;
 	float: left;
 	text-decoration: none;
-	color: black;
+	color: blue;
 	text-align: center;
 }
 
@@ -75,6 +100,7 @@ h1 a {
 	height: 60px;
 	border: 1px groove black;
 	padding: 20px;
+	background-color:#ffcc99;
 }
 
 .photo_playing img {
@@ -90,3 +116,67 @@ h1 a {
 	display: block;
 	margin-top: 15px;
 }
+
+#user-table a {
+	color:blue;
+} 
+
+#miniatura {
+	width: 20px;
+	height: 20px;
+	
+}
+#Upload h2 {
+	color: blue;
+}
+
+#Perfil h2 {
+	color: blue;
+}
+
+#Crear-usuario h2 {
+	color: blue;
+}
+
+#Editar-usuario h2 {
+	color: blue;
+}
+
+#Login h2{
+	color: blue;
+}
+
+#usuarios h2 {
+	color: blue;
+}
+
+#flashinfo h3	{ color: black;
+			  background: #0066cc;
+			  	  margin-left:200px;
+			  	 text-align:center;
+			}
+#flashinfo ul	{ color: black;
+			  background: #ff6699;
+			  	  margin-left:200px;
+			  	 text-align:center;
+			}
+#flashsuccess h3	{ color: black;
+			  	  background: #53ff1a;
+			  	  margin-left:200px;
+			  	 text-align:center;
+				}
+#flashsuccess ul	{ color: black;
+			  	  background: #ff6699;
+			  	  margin-left:200px;
+			  	 text-align:center;
+				}
+#flasherror h3 { color: black;
+			  	 background: #ff0000;
+			  	 margin-left:200px;
+			  	 text-align:center;
+			}
+#flasherror ul { color: black;
+			  	 background: #ff6699;
+			  	 margin-left:200px;
+			  	 text-align:center;
+			}			

@@ -33,7 +33,7 @@ exports.show = function (req, res, next) {
 };
 
 // Escribe una nueva foto en el registro de imagenes.
-exports.create = function (req, res) {
+exports.create = function (req, res, next) {
 	var authorId = req.session.user && req.session.user.id || 0;
 
 	var photo = models.Photo.build({name: req.body.name, 
@@ -42,10 +42,13 @@ exports.create = function (req, res) {
 	console.log('Nuevo fichero: ', req.body);
 	return photo.save({fields: ['name', 'url', 'AuthorId']}).then(function() {
 		models.User.findById(authorId).then(function(user) {
-			user.addPhoto(photo)
+			user.addPhoto(photo);
+			req.flash('success', 'Foto subida con éxito');
 			res.redirect('/photos');
-		}).catch(function() {
+		}).catch(function(error) {
 			res.redirect('/photos');
+			req.flash('error', 'Error al subir la Foto: '+error.message);
+			next(error);
 		})
 	});
 };
@@ -54,9 +57,11 @@ exports.create = function (req, res) {
 exports.destroy = function (req, res, next) {
 	models.Photo.findById(req.params.photoId).then(function(photo) {
 		photo.destroy().then(function() {
+			req.flash('success', 'La foto ha sido borrada con éxito');
 			res.redirect('/photos');
 		});
 	}).catch(function(error) {
+		req.flash('error', 'Error al borrar la foto: '+error.message);
 		next(error);
 	});
 };

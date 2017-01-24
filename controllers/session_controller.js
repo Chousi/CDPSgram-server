@@ -39,10 +39,12 @@ exports.create = function(req,res,next) {
 
 				res.redirect("/"); // redirección a la raíz
 			} else {
+				req.flash('error','La autenticación ha fallado. Intentelo otra vez');
 				res.redirect("/session"); // redirect a login
 			}
 		})
 		.catch(function(error) {
+			req.flash('error', 'Se ha producido un error: ' + error);
 			next(error);
 		});
 };

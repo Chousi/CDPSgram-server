@@ -1,3 +1,4 @@
+<div id = "Perfil">
 
 <h2> Usuario </h2>
 
@@ -12,9 +13,10 @@
 </p>
 
 <p>
- <b><strong>Photos:</strong></b>
+ <strong>Fotos subidas:</strong>
          <% for(var photo in photos) { %>
-         <b><a href="/photos/<%= photos[photo].id %>"><%= photos[photo].name %></a></b>
+         	<img id="miniatura" src="<%=photos[photo].url%>">
+         </a>
      	<% } %>
 
 <% if (session.user) { %>
@@ -38,3 +40,5 @@
 <a href="/users">
 	<button type="button">Volver</button>
 </a>
+
+</div>
