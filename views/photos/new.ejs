@@ -3,7 +3,7 @@
 	var photos_url = process.env.PHOTOS_URL || "http://localhost:8000";
 	%>
 	<form action="/photos" method="post">  
-		<h2><label class="upload_field">Upload a new photo:</label></h2>
+		<h2><label class="upload_field">Sube una foto:</label></h2>
 		<span class="upload_field"> Photo name: <input type="text" name="name"></span><br>
 		<input type="hidden" name="url">
 		<input class="upload_field" type="file" name="photo"/>

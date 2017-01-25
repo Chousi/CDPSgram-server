@@ -15,16 +15,16 @@
 	    <div id="nav-bar">
 	    	<ul>
           <% if (!session.user) { %>
-            <li ><a href="/users/new">New User</a></li>
+            <li ><a href="/users/new">Nuevo Usuario</a></li>
             <li ><a href="/session">Login</a></li>
           <% } else { %>
             <li><span><%= session.user.username %></span></li>
-            <li><a href="/users/<%= session.user.id %>">Profile</a></li>
+            <li><a href="/users/<%= session.user.id %>">Perfil de usuario</a></li>
             <li><a href="/session?_method=DELETE">Logout</a></li>
           <% } %>
-	    		<li><a href="/photos">My photos</a></li>
-	    		<li><a href="/photos/new">Upload new photo</a></li>
-          <li><a href="/users">Users</a></li>
+	    		<li><a href="/photos">Fotos de la comunidad</a></li>
+	    		<li><a href="/photos/new">Sube una foto</a></li>
+          <li><a href="/users">Usuarios</a></li>
         
         </ul>
 	   </div>
