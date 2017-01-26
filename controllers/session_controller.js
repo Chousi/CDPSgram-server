@@ -40,7 +40,7 @@ exports.create = function(req,res,next) {
 				res.redirect("/"); // redirección a la raíz
 			} else {
 				req.flash('error','La autenticación ha fallado. Intentelo otra vez');
-				res.redirect("/session"); // redirect a login
+				res.redirect("/session"); // redirección a login
 			}
 		})
 		.catch(function(error) {
@@ -51,7 +51,7 @@ exports.create = function(req,res,next) {
 // DELETE /session -- Destruir sesion
 exports.destroy = function(req, res, next) {
 	delete req.session.user;
-	res.redirect('/session'); // redirect a login
+	res.redirect('/session'); // redirección a login
 };
 
 

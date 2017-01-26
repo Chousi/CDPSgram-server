@@ -1,16 +1,20 @@
 <%
-var photos_url = process.env.PHOTOS_URL || "http://localhost:8000";
+var photos_url = "http://localhost:8000";
 %>
 <div class="photo photo_playing">
 	<p><%=photo.name%></p>
 	<img src="<%=photo.url%>"></img>
 	<p>Publicada por:<%= author || 'Anonimo' %> </p>
 	
-	<form method="post" action="/photos/<%=photo.id%>?_method=delete">
-	    <button onClick="return confirm('Delete: <%=photo.name%>. Are you sure? ');">
-	      Delete photo
-	    </button>
-  	</form>
+	<% if (session.user) { %>
+		<% if (session.user.isAdmin || session.user.username === author) { %>
+			<form method="post" action="/photos/<%=photo.id%>?_method=delete">
+			    <button onClick="return confirm('Delete: <%=photo.name%>. Are you sure? ');">
+			      Delete photo
+			    </button>
+		  	</form>
+		<% } %>
+	<% } %>	
 </div>
 
 <script type="text/javascript">

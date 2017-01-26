@@ -23,8 +23,8 @@ module.exports = {
           },
 
           {
-            username: 'cdps', 
-            password: encryptPassword('cdps', 'bbbb'),
+            username: 'jose', 
+            password: encryptPassword('xxxx', 'bbbb'),
             salt:     'bbbb',
             createdAt: new Date(), updatedAt: new Date()
           }

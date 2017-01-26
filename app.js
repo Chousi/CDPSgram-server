@@ -31,7 +31,10 @@ app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
-
+// Para cada petición HTTP comprueba si el usuario está logueado, y si lo 
+// está comprueba si su sesión caducó por inactividad. Si es así, se destruye la sesión, y 
+// y el usuario tendrá que volver a autenticarse. Se ha establecido un período de
+// 2 minutos.
 
 if (app.get('env') === 'production') {
   app.use(function(req, res, next) {
@@ -54,7 +57,7 @@ if (app.get('env') === 'production') {
   });
 }
 
-// Helper dinámico:
+
 app.use(function(req, res, next) {
   // Hacer visible req.session en las vistas
     res.locals.session = req.session;

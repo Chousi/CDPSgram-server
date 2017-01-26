@@ -3,7 +3,8 @@ var Sequelize = require('sequelize');
 
 // GET /users
 exports.index = function(req, res, next) {
-    models.User.findAll({ order: ['username'] }).then(function(users) {
+    models.User.findAll({ order: ['username'] })
+    .then(function(users) {
         res.render('users/index', { users: users });
     }).catch(function(error) {
         next(error);
@@ -64,10 +65,8 @@ exports.edit = function(req, res, next) {
 // PUT /users/:id
 exports.update = function(req, res, next) {
     models.User.findById(req.params.userId).then(function(user) {
-        //user.username = req.body.username;    // NO EDITAR
         user.password = req.body.password;
 
-        // El password no puede estar vacío
         if(!req.body.password) {
             return res.render('users/edit', { user: user });
         }
@@ -97,7 +96,7 @@ exports.destroy = function(req, res, next)  {
                 if (req.session.user && req.session.user.id === user.id) {
                 delete req.session.user
                 }
-                res.redirect('/users')
+                res.redirect('/')
             }).catch(function(error) {
                 next(error);
             });

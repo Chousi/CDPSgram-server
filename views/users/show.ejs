@@ -14,7 +14,9 @@
 
 <p>
  <strong>Fotos subidas:</strong>
+ 		<p />
          <% for(var photo in photos) { %>
+         <a href='/photos/<%=photos[photo].id%>'>
          	<img id="miniatura" src="<%=photos[photo].url%>">
          </a>
      	<% } %>

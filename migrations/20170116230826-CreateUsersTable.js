@@ -17,26 +17,16 @@ module.exports = {
                         notEmpty: {msg: "Falta username"}
                       } 
           },
-
           password: { type: Sequelize.STRING,
-                      validate: { notEmpty: {msg: "Falta password"}} 
-          },
-
-          salt: { type: Sequelize.STRING 
-          },
-
+                      validate: { notEmpty: {msg: "Falta password"}} },
+          salt: { type: Sequelize.STRING },
           isAdmin: {
                   type: Sequelize.BOOLEAN,
-                  defaultValue: false 
-          },
-
+                  defaultValue: false },
           createdAt: { type: Sequelize.DATE,
-                       allowNull: false 
-          },
-
+                       allowNull: false },
           updatedAt: { type: Sequelize.DATE,
-                       allowNull: false 
-          }
+                       allowNull: false }
         },
         { 
           sync: {
